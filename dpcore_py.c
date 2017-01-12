@@ -83,7 +83,8 @@ dpcore_py_dpcore(PyObject *self, PyObject *args)
     int *Pptr;
     int nrows, ncols;
     npy_intp dims[2];
-    
+    PyObject *tupleresult;
+
     /* parse input args */
     if (!PyArg_ParseTuple(args, "O!d", 
 			  &PyArray_Type, &Sin, &pen))
@@ -113,7 +114,7 @@ dpcore_py_dpcore(PyObject *self, PyObject *args)
     calc_dpcore(Sptr, nrows, ncols, pen, Dptr, Pptr);
 
     /* return the result */
-    PyObject *tupleresult = PyTuple_New(2);
+    tupleresult = PyTuple_New(2);
     PyTuple_SetItem(tupleresult, 0, PyArray_Return(Dout));
     PyTuple_SetItem(tupleresult, 1, PyArray_Return(Pout));
     return tupleresult;
