@@ -147,3 +147,15 @@ def dp(local_costs, penalty=0.0, gutter=0.0):
     return p[1:], q[1:], total_costs, phi
 
 
+def simmx(A, B):
+    """ M = simmx(A, B)
+    #	calculate a sim matrix between spectrogram-like feature matrices A and B.
+    #	2003-03-15 dpwe@ee.columbia.edu
+    #	Copyright (c) 2003 Dan Ellis <dpwe@ee.columbia.edu>
+    #	release under GPL - see file COPYRIGHT
+    """
+    EA = np.sqrt(np.sum(np.square(A)))
+    EB = np.sqrt(np.sum(np.square(B)))
+    return np.outer(A, B) / (EA * EB)
+
+
